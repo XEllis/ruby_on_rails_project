@@ -1,0 +1,30 @@
+rails g scaffold Company name:string website:string headquarter:string size:string founded:date industry:string revenue:integer synopsis:text
+
+rails g scaffold Job description:string employment_type:string responsibilities:text requirements:text
+
+rails g scaffold Application current_company:string linkedIn_URL:string portfolio_URL:string additional_information:text gender:string race:string veteran_status:string disability_status:string
+
+
+rails g model search name:string headquarter:string size:string industry:string min_revenue:integer max_revenue:integer synopsis:text
+
+Aerospace
+Agriculture
+Chemical
+Computer
+Construction
+Defense
+Education
+Energy
+Entertainment
+Financial
+Food
+Healthcare
+Hospitality
+Information
+Manufacturing
+Media
+Mining
+Telecommunications
+Transport
+Water
+Others

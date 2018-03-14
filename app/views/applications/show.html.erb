@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Current company:</strong>
+  <%= @application.current_company %>
+</p>
+
+<p>
+  <strong>Linkedin url:</strong>
+  <%= @application.linkedIn_URL %>
+</p>
+
+<p>
+  <strong>Portfolio url:</strong>
+  <%= @application.portfolio_URL %>
+</p>
+
+<p>
+  <strong>Additional information:</strong>
+  <%= @application.additional_information %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @application.gender %>
+</p>
+
+<p>
+  <strong>Race:</strong>
+  <%= @application.race %>
+</p>
+
+<p>
+  <strong>Veteran status:</strong>
+  <%= @application.veteran_status %>
+</p>
+
+<p>
+  <strong>Disability status:</strong>
+  <%= @application.disability_status %>
+</p>
+
+<p>
+  <strong>Resume:</strong>
+  <%= link_to 'Download', @application.resume.url if @application.resume? %>
+</p>
+<p>
+  <strong>Cover Letter:</strong>
+  <%= link_to 'Download', @application.cover.url if @application.cover? %>
+</p>
+<p>
+  <strong>Other Supporting Ducument:</strong>
+  <%= link_to 'Download', @application.other.url if @application.other? %>
+</p>
+
+<p>
+  <strong>Submission Status:</strong>
+  <%= @application.status.submission_status%>
+</p>
+
+<%= button_to 'Edit', edit_application_path(@application), method: :get%>

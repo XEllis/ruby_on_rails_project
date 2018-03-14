@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Finder</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application'%>
+    <%= stylesheet_link_tag href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
+  </head>
+  <body class="fixed skin-red">
+  <div class="wrapper">
+      <%= render 'layouts/navigation/layout'%>
+    <div class="content-wrapper">
+
+    <% if flash[:notice] %>
+      <p class="notice"><%= notice %></p>
+    <% elsif flash[:alert]%>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+
+      <%= yield %>
+    </div>
+  </div>
+  </body>
+
+</html>

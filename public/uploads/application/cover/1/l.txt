@@ -1,0 +1,7 @@
+rails g uploader Resume
+rails g uploader Cover
+
+rails g uploader Other
+rails g migration AddResumeToApplications resume
+rails g migration AddCoverToApplications cover
+rails g migration AddOtherToApplications other

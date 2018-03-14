@@ -1,0 +1,67 @@
+<h1>Users</h1>
+<br/>
+<div class="field", align="center">
+  <%= link_to 'Create User', new_users_admin_path %><br/>
+</div><br/>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Role</th>
+            <th>Company</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @users.each do |user| %>
+            <% if user.role != "Admin" %>
+              <tr>
+                <td><%= user.id %></td>
+                <td><%= user.first_name %></td>
+                <td><%= user.last_name %></td>
+                <td><%= user.role %></td>
+                <td>
+                  <% Company.all.collect do |company| %>
+                    <%= company.name if company.id == user.company_id %>
+                  <% end %>
+                </td>
+                <td><%= user.phone %></td>
+                <td>
+                  <%= link_to 'Show', users_admin_path(user), method: :get %> |
+                  <%= link_to 'Edit', edit_users_admin_path(user), method: :get %> |
+                  <%= link_to 'Destroy', users_admin_path(user), method: :delete, data: { confirm: 'Are you sure?' } %> |
+                  <% if user.role == "Recruiter" %>
+                    <%= link_to 'Jobs from this Recruiter', custom_recruiter_jobs_path(user) %>
+                  <% elsif user.role == "Job Seeker" %>
+                    <%= link_to 'Applications from this Job Seeker', custom_job_seeker_applications_path(user) %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br/>

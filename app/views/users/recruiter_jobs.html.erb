@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Jobs Posted by <%= @user.email %></h1>
+
+<div class="field", align="center">
+  <%= link_to 'Create New Job', new_job_path %>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Company</th>
+    <th>Description</th>
+    <th>Employment type</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @jobs.each do |job| %>
+    <tr>
+      <td><%= job.id %></td>
+      <td>
+        <% Company.all.collect do |company| %>
+          <%= company.name if company.id == job.company_id %>
+        <% end %>
+      </td>
+      <td><%= job.description %></td>
+      <td><%= job.employment_type %></td>
+      <td>
+        <%= link_to 'Show', job %> |
+        <%= link_to 'Edit', edit_job_path(job) %> |
+        <%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %> |
+        <%= link_to 'List All Applications for This Job', custom_job_applications_path(job) %>
+      </td>
+    </tr>
+  <% end %>
+  <tr><td></td><td></td><td></td><td></td><td></td></tr>
+  </tbody>
+</table>
+
+<br>

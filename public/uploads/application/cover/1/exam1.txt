@@ -1,0 +1,80 @@
+class RectangleUtil
+  def method_missing(m, *args, &block)
+     puts "Unable to find method " << m.to_s << ", Trying to define it.."
+     if (m == :area)
+       eval %{def area(l, w) return l*w end}
+       puts "Success. You can use this method now."
+     else
+        puts "Method not supported"
+     end
+  end
+end
+
+b = RectangleUtil.new
+b.area(5,2)
+b.send(:area, 5, 2)
+
+module Student
+attr_accessor :major, :gpa
+include Comparable
+
+def initialize(major, gpa)
+        @major = major
+        @gpa = gpa
+    end
+
+    def <=>(other)
+        self.gpa <=> other.gpa
+end
+
+def to_s
+        "(" + major + ": " + gpa.to_s + ")"
+    end
+
+end
+
+class Person
+include Student
+def initialize(name, major, gpa)
+@name = name
+super(major, gpa)
+end
+
+def to_s
+@name +" "+super
+end
+end
+
+
+
+class Pokemon < ApplicationRecord 
+    validates :name, 
+    presence: true, 
+    format: { with: /\A[a-zA-Z ]+\z/} 
+    validates :type, 
+    inclusion => { :in => [Fire, Water, Electric] } 
+    validates :attack, 
+    uniqueness: { case_sensitive: false}, 
+    length: {in: 5..15}
+end 
+
+def c(n)
+(1..n).inject ({}) do |k, v|
+k[v]=v*v*v
+k
+end
+end
+
+def cube(max)
+(1..max).each {|a| yield a*a*a}
+end
+
+
+class Adder
+def initialize(n)
+@block=lambda {|a| n+a}
+end
+def add(a)
+@block.call a
+end
+end

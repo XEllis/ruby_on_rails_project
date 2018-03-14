@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Companies</h1><br/>
+
+<div class="field", align="center">
+  <%= link_to 'Create New Company', new_company_path %>
+</div><br/>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Headquarters</th>
+              <th>Size</th>
+              <th>Industry</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @companies.each do |company| %>
+              <tr>
+                <td><%= company.id %></td>
+                <td><%= company.name %></td>
+                <td><%= company.headquarter %></td>
+                <td><%= company.size %></td>
+                <td><%= company.industry %></td>
+                <td>
+                  <%= link_to 'Show', company %> |
+                  <%= link_to 'Edit', edit_company_path(company) %> |
+                  <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %> |
+                  <%= link_to 'List All Jobs in This Company', custom_company_jobs_path(company) %>
+                </td>
+              </tr>
+            <% end %>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<br>

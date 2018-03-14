@@ -1,0 +1,77 @@
+<%= form_with(model: application, local: true) do |form| %>
+  <% if application.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(application.errors.count, "error") %> prohibited this application from being saved:</h2>
+
+      <ul>
+      <% application.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label 'Job Id' %><br/>
+    <%= select("application", "job_id", Job.all.collect{ |c| [ c.id, c.id] }) %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :current_company %><br/>
+    <%= form.text_field :current_company, id: :application_current_company %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :linkedIn_URL %><br/>
+    <%= form.text_field :linkedIn_URL, id: :application_linkedIn_URL %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :portfolio_URL %><br/>
+    <%= form.text_field :portfolio_URL, id: :application_portfolio_URL %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :additional_information %><br/>
+    <%= form.text_area :additional_information, id: :application_additional_information %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :gender %><br/>
+    <%= form.select :gender, ['Female', 'Male', 'Others','Private'], id: :application_gender %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :race %><br/>
+    <%= form.select :race, ['American indian or alaska native', 'Asian', 'Black or african american', 'Native hawaiian or other pacific islander', 'White', 'Others', 'Private'], id: :application_race %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :veteran_status %><br/>
+    <%= form.select :veteran_status, ['No', 'Yes', 'Private'], id: :application_veteran_status %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :disability_status %><br/>
+    <%= form.select :disability_status, ['No', 'Yes', 'Private'], id: :application_disability_status %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :resume %><br/>
+    <%= form.file_field :resume %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label 'Cover Letter' %><br/>
+    <%= form.file_field :cover %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label 'Other Supporting Document' %><br/>
+    <%= form.file_field :other %>
+  </div><br/>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

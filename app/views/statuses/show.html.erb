@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Submission status:</strong>
+  <%= @status.submission_status %>
+</p>
+
+<%= button_to 'Edit', edit_status_path(@status), method: :get%>

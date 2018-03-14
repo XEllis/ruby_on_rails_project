@@ -1,0 +1,70 @@
+<h1>Hello <%=current_user.role %>!</h1><br/>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th>Task Category</th>
+              <th>Link(s)</th>
+            </tr>
+
+            <% if current_user.role == "Admin" %>
+              <tr>
+                <td>Users</td>
+                <td><%= link_to('List All Users', users_admin_index_path ) %></td>
+              </tr>
+              <tr>
+                <td>Applications</td>
+                <td><%= link_to('Show All Applications', applications_path) %></td>
+              </tr>
+            <% end %>
+
+            <% if current_user.role == "Recruiter" %>
+              <tr>
+                <td>My Company</td>
+                <td>
+                <% if current_user.company %>
+                  <%= link_to('Show My Company', current_user.company) %>
+                <% else %>
+                  <%= link_to('Choose My Company', edit_users_admin_path(current_user.id)) %> (You need to have a company in order to post a job!)
+                <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td>Jobs in My Company</td>
+                <td>
+                  <% if current_user.company %>
+                    <%= link_to('List All Current Job Openings in My Company', custom_company_jobs_path(current_user.company)) %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td>Jobs Posted by Me</td>
+                <td>
+                  <% if current_user.company %>
+                    <%= link_to('List All Jobs Posted by Me', custom_recruiter_jobs_path(current_user)) %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+
+            <% if current_user.role == "Job Seeker" %>
+              <tr>
+                <td>My Applications</td>
+                <% if current_user.applications.any? %>
+                  <td><%= link_to('List All My Applications', custom_job_seeker_applications_path(current_user)) %></td>
+                <% else %>
+                  <td><%= link_to('Apply For Job', new_application_path) %> (Let's get it started!)</td>
+                <% end %>
+              </tr>
+            <% end %>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

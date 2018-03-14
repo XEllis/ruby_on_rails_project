@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  headquarter: MyString
+  size: MyString
+  industry: MyString
+  min_revenue: 1
+  max_revenue: 1
+  synopsis: MyText
+
+two:
+  name: MyString
+  headquarter: MyString
+  size: MyString
+  industry: MyString
+  min_revenue: 1
+  max_revenue: 1
+  synopsis: MyText

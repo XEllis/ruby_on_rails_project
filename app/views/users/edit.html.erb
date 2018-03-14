@@ -1,0 +1,72 @@
+<h2>Edit User</h2>
+
+<%= form_for @user, url: users_admin_path(@user)  do |f| %>
+
+  <% if @user.role != "Admin" %>
+    <div class="field">
+      <%= f.label "Account Type" %><br/>
+      <%= select(:user, :role, ["Recruiter", "Job Seeker"]) %>
+    </div><br/>
+  <% else %>
+    <div class="field">
+      <%= f.label "Account Type" %><br/>
+      <%= select(:user, :role, ["Admin"]) %>
+    </div><br/>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "First Name" %><br/>
+    <%= f.text_field :first_name %>
+  </div><br/>
+
+  <div class="field">
+    <%= f.label "Last Name" %><br/>
+    <%= f.text_field :last_name %>
+  </div><br/>
+
+  <div class="field">
+    <%= f.label :email %><br/>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div><br/>
+
+  <div class="field">
+    <%= f.label :password %><br/> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div><br/>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br/>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div><br/>
+
+  <div class="field">
+    <%= f.label "------------------------------------------------------------------" %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Company" %><br/>
+    <%= select("user", "company_id", Company.all.collect {|c| [c.name, c.id]}) %><br/>
+    <i>(For Recruiters only...field will be cleared if you are a Job Seeker)</i><br/>
+  </div><br>
+
+  <div class="field">
+    <%= f.label "Phone {###-###-####}" %><br/>
+    <%= f.text_field :phone %><br/>
+    <i>(For Job Seekers only...field will be cleared if you are a Recruiter)</i>
+  </div>
+
+  <div class="field">
+    <%= f.label "------------------------------------------------------------------" %>
+  </div><br/>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+  <br>
+<% end %>
+
+  <% if current_user.role != "Admin" %>
+  <h3>Delete account</h3>
+  <%= button_to "Delete Account", users_admin_path(@user.id), data: { confirm: "Are you sure?" }, method: :delete %>
+  <% end %>
+  <br><br>

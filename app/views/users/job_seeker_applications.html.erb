@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Applications from <%= @user.email %></h1>
+
+<div class="field", align="center">
+  <%= link_to 'New Application', new_application_path %>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Current Company</th>
+    <th>Linkedin URL</th>
+    <th>Portfolio URL</th>
+    <th>Resume</th>
+    <th>Cover Letter</th>
+    <th>Submission Status</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @applications.each do |application| %>
+    <tr>
+      <td><%= application.id %></td>
+      <td><%= application.current_company %></td>
+      <td><%= application.linkedIn_URL %></td>
+      <td><%= application.portfolio_URL %></td>
+      <td><%= link_to 'Download', application.resume.url if application.resume? %></td>
+      <td><%= link_to 'Download', application.cover.url if application.cover? %></td>
+      <td><%= application.status.submission_status%></td>
+      <td><%= link_to 'Show', application %> |
+        <%= link_to 'Edit', edit_application_path(application) %> |
+        <%= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>

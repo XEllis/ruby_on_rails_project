@@ -1,0 +1,39 @@
+<h1>Advanced Search</h1>
+
+<%= form_for @search, html: {class: "pure-form"} do |form| %>
+
+  <div class="field">
+    <%= form.label :name %><br/>
+    <%= form.text_field :name %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :headquarter %><br/>
+    <%= form.text_field :headquarter %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :size %><br/>
+    <%= form.select :size, ['1-50', '51-200', '201-500', '501-1000', '1000+'], :include_blank => true %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :industry %><br/>
+    <%= form.select :industry, ['Aerospace', 'Agriculture', 'Chemical', 'Computer', 'Construction', 'Defense', 'Education', 'Energy', 'Entertainment', 'Financial', 'Food', 'Healthcare', 'Hospitality', 'Information', 'Manufacturing', 'Media', 'Mining', 'Telecommunications', 'Transport', 'Water', 'Others'], :include_blank => true %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :min_revenue, "Min Revenue" %><br/>
+    <%= form.text_field :min_revenue %><br/><br/>
+    <%= form.label :max_revenue, "Max Revenue" %><br/>
+    <%= form.text_field :max_revenue %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :synopsis %><br/>
+    <%= form.text_area :synopsis %>
+  </div><br/>
+
+  <div class="actions"><%= form.submit "search", class: "pure-button pure-button-primary" %>  </div>
+<% end %>
+
